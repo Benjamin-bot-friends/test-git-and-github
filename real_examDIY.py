@@ -116,4 +116,7 @@ def core_program():
 def test_git():
     print("ทดสอบระบบ git")
 
+def test_git1():
+    print("เพิ่มให้ครบเฉยๆ")
+
 core_program()
