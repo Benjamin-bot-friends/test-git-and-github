@@ -107,8 +107,13 @@ def core_program():
         elif num == 5:
             print("จบการทำงาน")
             break
+        elif num == 6:
+            test_git()
         else:
             print("กรุณาเลือกรายการตามที่กำหนด")
         
+
+def test_git():
+    print("ทดสอบระบบ git")
 
 core_program()
