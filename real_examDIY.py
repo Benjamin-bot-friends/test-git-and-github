@@ -74,7 +74,7 @@ def total_balance(insum, exsum):
     return balance  
 
 def core_program():
-    new_data = load_item()
+    new_data = load_item(
 
     while True:
         today = datetime.date.today()
