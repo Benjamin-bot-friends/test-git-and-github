@@ -121,5 +121,11 @@ def test_git2():
     while True:
         print("ทดสอบระบบ git2")
         break
-        
+
+def test_git3():
+    for i in range(5):
+        print(f"ทดสอบระบบ git3 ครั้งที่ {i+1}")
+        if i == 4:
+            print("ทดสอบระบบ git3 เสร็จสิ้น")
+
 core_program() 
