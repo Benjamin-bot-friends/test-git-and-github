@@ -117,7 +117,9 @@ def test_git():
     print("ทดสอบระบบ git")
 
 def test_git2():
-    for i in range(5):
-        print(f"ทดสอบระบบ git ครั้งที่ {i+1}")
+    print("ทดสอบระบบ git2")
+    while True:
+        print("ทดสอบระบบ git2")
+        break
         
 core_program() 
