@@ -121,5 +121,11 @@ def test_git2():
     while True:
         print("ทดสอบระบบ git2")
         break
-        
+
+def test_git3():
+    print("ทดสอบระบบ git3")
+    while True:
+        print("ทดสอบระบบ git3")
+        break
+
 core_program() 
