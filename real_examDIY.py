@@ -107,32 +107,9 @@ def core_program():
         elif num == 5:
             print("จบการทำงาน")
             break
-        elif num == 6:
-            test_git()
         else:
             print("กรุณาเลือกรายการตามที่กำหนด")
         
 
-def test_git():
-    print("ทดสอบระบบ git")
-
-def test_git2():
-    print("ทดสอบระบบ git2")
-    while True:
-        print("ทดสอบระบบ git2")
-        break
-
-def test_git3():
-<<<<<<< HEAD
-    print("ทดสอบระบบ git3")
-    while True:
-        print("ทดสอบระบบ git3")
-        break
-=======
-    for i in range(5):
-        print(f"ทดสอบระบบ git3 ครั้งที่ {i+1}")
-        if i == 4:
-            print("ทดสอบระบบ git3 เสร็จสิ้น")
->>>>>>> conflict
 
 core_program() 
