@@ -50,11 +50,50 @@ def add_item_income(new_data,date_str):
     new_data.append({"date": date_str, "type": "income", "name": item, "amount": amount})
     print(f"รายการที่เพิ่ม: '{item}' จำนวนเงิน: {amount} บาท.")
 
+def type_label(item_type):
+    if item_type == "income":
+        return "รายรับ"
+    if item_type == "expense":
+        return "รายจ่าย"
+    return "ไม่ทราบประเภท"
+
 def type_option():
     try:
-        return int(input("เลือกรายการที่ต้องการ กด 1 เพื่อเลือกบันทึกรายรับ " "กด 2 เพื่อบันทึกรายจ่าย " "กด 3 เพื่อดูบันทึก" "กด 4 เพื่อสรุปรายรับรายจ่าย" "กด 5 เพื่อจบการทำงาน"))
+        return int(input(
+            "เลือกรายการที่ต้องการ:\n"
+            "กด 1 เพื่อบันทึกรายรับ\n"
+            "กด 2 เพื่อบันทึกรายจ่าย\n"
+            "กด 3 เพื่อดูบันทึก\n"
+            "กด 4 เพื่อสรุปรายรับรายจ่าย\n"
+            "กด 5 เพื่อลบรายการตาม index\n"
+            "กด 6 เพื่อจบการทำงาน\n"
+        ))
     except ValueError:
         print("กรุณากรอกตัวเลขให้ถูกต้อง") 
+
+def delete_item(new_data):
+    if not new_data:
+        print("ไม่มีรายการที่สามารถลบได้")
+        return False
+
+    print("---เลือกรายการที่ต้องการลบ---")
+    for index, item in enumerate(new_data, start=1):
+        type_th = type_label(item["type"])
+        print(f"{index}. วันที่: {item['date']} | {type_th}: {item['name']} | จำนวนเงิน: {item['amount']:,.2f} บาท")
+
+    try:
+        index = int(input("ระบุ index ของรายการที่ต้องการลบ: "))
+    except ValueError:
+        print("กรุณากรอก index เป็นตัวเลข")
+        return False
+
+    if index < 1 or index > len(new_data):
+        print("ไม่พบรายการตาม index ที่ระบุ")
+        return False
+
+    deleted_item = new_data.pop(index - 1)
+    print(f"ลบรายการ '{deleted_item['name']}' เรียบร้อยแล้ว")
+    return True
 
 def sum_by_month(new_data):
     insum = {}
@@ -92,9 +131,9 @@ def core_program():
                 print("ไม่มีรายการที่บันทึก")
             elif new_data:
                 print("---สรุปรายการบัญชี---")
-                for item in new_data:
-                    type_th = "รายรับ" if item["type"] == "income" else "รายจ่าย"
-                    print(f"วันที่: {item['date']} | {type_th}: {item['name']} | จำนวนเงิน: {item['amount']:,.2f} บาท")
+                for index, item in enumerate(new_data, start=1):
+                    type_th = type_label(item["type"])
+                    print(f"{index}. วันที่: {item['date']} | {type_th}: {item['name']} | จำนวนเงิน: {item['amount']:,.2f} บาท")
         elif num == 4:
             insum, exsum = sum_by_month(new_data)
             balance = total_balance(insum, exsum)
@@ -105,6 +144,9 @@ def core_program():
 
             print(f"ยอดคงเหลือ = {balance}")
         elif num == 5:
+            if delete_item(new_data):
+                save_item(new_data)
+        elif num == 6:
             print("จบการทำงาน")
             break
         else:
